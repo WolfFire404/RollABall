@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\Checkpoint.cs" />
-     <Compile Include="Assets\Script\Respawn.cs" />
      <Compile Include="Assets\Script\Rotater.cs" />
      <Compile Include="Assets\Script\playerCamera.cs" />
      <Compile Include="Assets\Script\playerMovement.cs" />
