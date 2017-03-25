@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class playerMovement : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class playerMovement : MonoBehaviour {
 	public float thrust;
 	private int count;
 	public Text countText;
+	public AudioClip collectSound;
 
 	Rigidbody rb;
 	float currentSpeed;
@@ -63,6 +65,7 @@ public class playerMovement : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag ("Pick Up")) 
 		{
+			AudioSource.PlayClipAtPoint (collectSound, transform.position);
 			other.gameObject.SetActive (false);	
 			count = count + 1;
 			SetCountText ();	
@@ -72,5 +75,17 @@ public class playerMovement : MonoBehaviour {
 	void SetCountText ()
 	{
 		countText.text = "Score: " + count.ToString ();
+		if (count == 7) 
+		{
+			SceneManager.LoadScene ("winScene");
+		}
+	}
+
+	void Update ()
+	{
+	if (transform.position.y < -5) 
+		{
+			SceneManager.LoadScene ("deathScene");	
+		}
 	}
 }
